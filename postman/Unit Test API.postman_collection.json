@@ -1,0 +1,560 @@
+{
+	"info": {
+		"_postman_id": "558d675d-0116-437c-bf9e-56d6a590d6a4",
+		"name": "Unit Test API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14307641",
+		"_collection_link": "https://lively-star-688485.postman.co/workspace/AIS-WorkSpace~9819c6d0-1e56-411a-8895-4219a0c16be4/collection/14307641-558d675d-0116-437c-bf9e-56d6a590d6a4?action=share&creator=14307641&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Success",
+			"item": [
+				{
+					"name": "createOrder | Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success, Should have response status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(`Success, Should have response message success\"`, function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    // pm.collectionVariables.set(\"reserveID\", responseJson.reserveId)\r",
+									"    pm.expect(responseJson.message).to.eq('success');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    const generateId = () => {\r",
+									"        const dateTime = new Date();\r",
+									"        const dd = String(dateTime.getDate()).padStart(2, '0');\r",
+									"        const mm = String(dateTime.getMonth() + 1).padStart(2, '0');\r",
+									"        const yyyy = String(dateTime.getFullYear());\r",
+									"        return yyyy + mm + dd + Date.now();\r",
+									"    }\r",
+									"    \r",
+									"    const id = generateId();\r",
+									"    pm.collectionVariables.set(\"id\",id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{id}},\r\n    \"orderName\": \"A\",\r\n    \"quantity\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/createOrder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"createOrder"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "reserveOrder : orderCode 6 (Device only)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"referWebSessionID\": \"NCP202200913143900001\",\r\n    \"referChannel\": \"NCP\",\r\n    \"referChannelIP\": \"127.0.0.1\",\r\n    \"transactionID\": \"202200913143900001\",\r\n    \"locationSource\": \"4289\",\r\n    \"userId\": \"NOCP\",\r\n    \"depositType\": \"3\",\r\n    \"productList\": [\r\n        {\r\n            \"soCompany\": \"AWN\",\r\n            \"locationDestination\": \"4289\",\r\n            \"locationStock\": \"4289\",\r\n            \"locationStockType\": \"DEPO\",\r\n            \"productType\": \"DEVICE\",\r\n            \"productSubType\": \"HANDSET\",\r\n            \"brand\": \"OPPO\",\r\n            \"model\": \"A53_4/64CDMSL\",\r\n            \"color\": \"ELECTRIC BLACK\",\r\n            \"matCode\": \"NEW0OP0A53F-BK01XL\",\r\n            \"qty\": 1,\r\n            \"matAirTime\": \"\",\r\n            \"orderCode\": 6\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://lego-stg.ais.co.th/nocpbe/staging/be/reserveorder/action/reserveOrder",
+									"protocol": "https",
+									"host": [
+										"lego-stg",
+										"ais",
+										"co",
+										"th"
+									],
+									"path": [
+										"nocpbe",
+										"staging",
+										"be",
+										"reserveorder",
+										"action",
+										"reserveOrder"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 13 Sep 2022 07:39:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "vary",
+									"value": "accept-encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer-when-downgrade"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:"
+								},
+								{
+									"key": "X-Proxy-Pri",
+									"value": "01"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transactionID\": \"202200913143900001\",\n    \"resultCode\": \"20000\",\n    \"resultMessage\": \"Success\",\n    \"result\": {\n        \"reserveStock\": {\n            \"resultCode\": \"20000\",\n            \"resultMessage\": \"Success.\",\n            \"result\": {\n                \"soId\": \"201683\",\n                \"productList\": [\n                    {\n                        \"locationDestination\": \"4289\",\n                        \"locationStock\": \"4289\",\n                        \"soCompany\": \"AWN\",\n                        \"locationStockType\": \"DEPO\",\n                        \"productType\": \"DEVICE\",\n                        \"productSubType\": \"HANDSET\",\n                        \"brand\": \"OPPO\",\n                        \"model\": \"A53_4/64CDMSL\",\n                        \"color\": \"ELECTRIC BLACK\",\n                        \"matCode\": \"NEW0OP0A53F-BK01XL\",\n                        \"qty\": 1,\n                        \"matAirTime\": \"\",\n                        \"listMatFreeGoods\": []\n                    }\n                ]\n            }\n        }\n    },\n    \"reserveId\": \"2022091300064\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Faill",
+			"item": [
+				{
+					"name": "createOrder | Faill Case orderName should not be empty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Faill, Should have response status 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(`orderName equa empty, Should have response message \"orderName should not be empty\"`, function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    console.log(\"responseJson\", responseJson)\r",
+									"    pm.expect(responseJson.message).to.equal(\"orderName should not be empty\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    const generateId = () => {\r",
+									"        const dateTime = new Date();\r",
+									"        const dd = String(dateTime.getDate()).padStart(2, '0');\r",
+									"        const mm = String(dateTime.getMonth() + 1).padStart(2, '0');\r",
+									"        const yyyy = String(dateTime.getFullYear());\r",
+									"        return yyyy + mm + dd + Date.now();\r",
+									"    }\r",
+									"    \r",
+									"    const id = generateId();\r",
+									"    pm.collectionVariables.set(\"id\",id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{id}},\r\n    \"orderName\": \"\",\r\n    \"quantity\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/createOrder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"createOrder"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "reserveOrder : orderCode 6 (Device only)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"referWebSessionID\": \"NCP202200913143900001\",\r\n    \"referChannel\": \"NCP\",\r\n    \"referChannelIP\": \"127.0.0.1\",\r\n    \"transactionID\": \"202200913143900001\",\r\n    \"locationSource\": \"4289\",\r\n    \"userId\": \"NOCP\",\r\n    \"depositType\": \"3\",\r\n    \"productList\": [\r\n        {\r\n            \"soCompany\": \"AWN\",\r\n            \"locationDestination\": \"4289\",\r\n            \"locationStock\": \"4289\",\r\n            \"locationStockType\": \"DEPO\",\r\n            \"productType\": \"DEVICE\",\r\n            \"productSubType\": \"HANDSET\",\r\n            \"brand\": \"OPPO\",\r\n            \"model\": \"A53_4/64CDMSL\",\r\n            \"color\": \"ELECTRIC BLACK\",\r\n            \"matCode\": \"NEW0OP0A53F-BK01XL\",\r\n            \"qty\": 1,\r\n            \"matAirTime\": \"\",\r\n            \"orderCode\": 6\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://lego-stg.ais.co.th/nocpbe/staging/be/reserveorder/action/reserveOrder",
+									"protocol": "https",
+									"host": [
+										"lego-stg",
+										"ais",
+										"co",
+										"th"
+									],
+									"path": [
+										"nocpbe",
+										"staging",
+										"be",
+										"reserveorder",
+										"action",
+										"reserveOrder"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 13 Sep 2022 07:39:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "vary",
+									"value": "accept-encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer-when-downgrade"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:"
+								},
+								{
+									"key": "X-Proxy-Pri",
+									"value": "01"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transactionID\": \"202200913143900001\",\n    \"resultCode\": \"20000\",\n    \"resultMessage\": \"Success\",\n    \"result\": {\n        \"reserveStock\": {\n            \"resultCode\": \"20000\",\n            \"resultMessage\": \"Success.\",\n            \"result\": {\n                \"soId\": \"201683\",\n                \"productList\": [\n                    {\n                        \"locationDestination\": \"4289\",\n                        \"locationStock\": \"4289\",\n                        \"soCompany\": \"AWN\",\n                        \"locationStockType\": \"DEPO\",\n                        \"productType\": \"DEVICE\",\n                        \"productSubType\": \"HANDSET\",\n                        \"brand\": \"OPPO\",\n                        \"model\": \"A53_4/64CDMSL\",\n                        \"color\": \"ELECTRIC BLACK\",\n                        \"matCode\": \"NEW0OP0A53F-BK01XL\",\n                        \"qty\": 1,\n                        \"matAirTime\": \"\",\n                        \"listMatFreeGoods\": []\n                    }\n                ]\n            }\n        }\n    },\n    \"reserveId\": \"2022091300064\"\n}"
+						}
+					]
+				},
+				{
+					"name": "createOrder | Faill Case quantity should not be empty Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Faill, Should have response status 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(`quantity equa empty, Should have response message \"quantity should not be empty\"`, function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    console.log(\"responseJson\", responseJson)\r",
+									"    pm.expect(responseJson.message).to.equal(\"quantity should not be 0\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"    const generateId = () => {\r",
+									"        const dateTime = new Date();\r",
+									"        const dd = String(dateTime.getDate()).padStart(2, '0');\r",
+									"        const mm = String(dateTime.getMonth() + 1).padStart(2, '0');\r",
+									"        const yyyy = String(dateTime.getFullYear());\r",
+									"        return yyyy + mm + dd + Date.now();\r",
+									"    }\r",
+									"    \r",
+									"    const id = generateId();\r",
+									"    pm.collectionVariables.set(\"id\",id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{id}},\r\n    \"orderName\": \"A\",\r\n    \"quantity\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/createOrder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"createOrder"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "reserveOrder : orderCode 6 (Device only)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"referWebSessionID\": \"NCP202200913143900001\",\r\n    \"referChannel\": \"NCP\",\r\n    \"referChannelIP\": \"127.0.0.1\",\r\n    \"transactionID\": \"202200913143900001\",\r\n    \"locationSource\": \"4289\",\r\n    \"userId\": \"NOCP\",\r\n    \"depositType\": \"3\",\r\n    \"productList\": [\r\n        {\r\n            \"soCompany\": \"AWN\",\r\n            \"locationDestination\": \"4289\",\r\n            \"locationStock\": \"4289\",\r\n            \"locationStockType\": \"DEPO\",\r\n            \"productType\": \"DEVICE\",\r\n            \"productSubType\": \"HANDSET\",\r\n            \"brand\": \"OPPO\",\r\n            \"model\": \"A53_4/64CDMSL\",\r\n            \"color\": \"ELECTRIC BLACK\",\r\n            \"matCode\": \"NEW0OP0A53F-BK01XL\",\r\n            \"qty\": 1,\r\n            \"matAirTime\": \"\",\r\n            \"orderCode\": 6\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://lego-stg.ais.co.th/nocpbe/staging/be/reserveorder/action/reserveOrder",
+									"protocol": "https",
+									"host": [
+										"lego-stg",
+										"ais",
+										"co",
+										"th"
+									],
+									"path": [
+										"nocpbe",
+										"staging",
+										"be",
+										"reserveorder",
+										"action",
+										"reserveOrder"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 13 Sep 2022 07:39:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "vary",
+									"value": "accept-encoding"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer-when-downgrade"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:"
+								},
+								{
+									"key": "X-Proxy-Pri",
+									"value": "01"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transactionID\": \"202200913143900001\",\n    \"resultCode\": \"20000\",\n    \"resultMessage\": \"Success\",\n    \"result\": {\n        \"reserveStock\": {\n            \"resultCode\": \"20000\",\n            \"resultMessage\": \"Success.\",\n            \"result\": {\n                \"soId\": \"201683\",\n                \"productList\": [\n                    {\n                        \"locationDestination\": \"4289\",\n                        \"locationStock\": \"4289\",\n                        \"soCompany\": \"AWN\",\n                        \"locationStockType\": \"DEPO\",\n                        \"productType\": \"DEVICE\",\n                        \"productSubType\": \"HANDSET\",\n                        \"brand\": \"OPPO\",\n                        \"model\": \"A53_4/64CDMSL\",\n                        \"color\": \"ELECTRIC BLACK\",\n                        \"matCode\": \"NEW0OP0A53F-BK01XL\",\n                        \"qty\": 1,\n                        \"matAirTime\": \"\",\n                        \"listMatFreeGoods\": []\n                    }\n                ]\n            }\n        }\n    },\n    \"reserveId\": \"2022091300064\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": ""
+		}
+	]
+}
