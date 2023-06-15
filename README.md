@@ -20,9 +20,9 @@ Requires : [node.js](https://nodejs.org/en/)
 
 - run server
 
-      ```bash
-      npm run start
-      ```
+  ```bash
+  npm run start
+  ```
 
   > Note : server : localhost:3000
 
