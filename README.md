@@ -43,7 +43,7 @@ Requires : [postman](https://www.postman.com/downloads/)
   ![runCollection](https://github.com/nathachai13011997/unittest-postman/blob/main/img/runCollection.png)
 
 - run scripts
-  ![runScripts](https://github.com/nathachai13011997/unittest-postman/blob/main/img/runCollection.png)
+  ![runScripts](https://github.com/nathachai13011997/unittest-postman/blob/main/img/runScripts.png)
 
 - results
   ![results](https://github.com/nathachai13011997/unittest-postman/blob/main/img/results.png)
